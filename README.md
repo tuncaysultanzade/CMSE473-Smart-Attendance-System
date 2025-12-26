@@ -40,6 +40,7 @@ Run the following commands:
 ```bash
 npm install
 composer install
+```
 
 ### 3. Configure the environment file
 cp .env.example .env
