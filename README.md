@@ -43,19 +43,22 @@ composer install
 ```
 
 ### 3. Configure the environment file
-cp .env.example .env
+```cp .env.example .env
 php artisan key:generate
 php artisan view:cache
-
+```
 ### 4. Start the application
 
 Run the following commands in two separate terminal windows (simultaneously):
-
+```
 Terminal 1 — Start Vite (frontend)
 npm run dev
+```
 
 Terminal 2 — Start Laravel server (backend)
+```
 php artisan serve
 
 
 Once both processes are running, the application will be accessible in your browser.
+```
