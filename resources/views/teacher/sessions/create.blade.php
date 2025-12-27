@@ -18,7 +18,6 @@
                 <form action="{{ route('teacher.sessions.store') }}" method="POST">
                     @csrf
 
-                    {{-- COURSE GROUP SEÇİMİ --}}
                     <div class="mb-4">
                         <x-input-label for="course_group_id" value="Ders / Course Group" />
                         <select id="course_group_id" name="course_group_id"
@@ -35,7 +34,6 @@
                         <x-input-error :messages="$errors->get('course_group_id')" class="mt-2" />
                     </div>
 
-                    {{-- SESSION TYPE --}}
                     <div class="mb-4">
                         <x-input-label for="session_type" value="Session Type" />
                         <select id="session_type" name="session_type" class="block mt-1 w-full border-gray-300 rounded-md">
@@ -46,7 +44,6 @@
                         <x-input-error :messages="$errors->get('session_type')" class="mt-2" />
                     </div>
 
-                    {{-- DATE --}}
                     <div class="mb-4">
                         <x-input-label for="session_date" value="Tarih" />
                         <x-text-input id="session_date" name="session_date" type="date"
@@ -54,7 +51,6 @@
                         <x-input-error :messages="$errors->get('session_date')" class="mt-2" />
                     </div>
 
-                    {{-- TIME --}}
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <x-input-label for="start_time" value="Başlangıç Saati" />
@@ -70,7 +66,6 @@
                         </div>
                     </div>
 
-                    {{-- SUBMIT --}}
                     <div class="mt-6">
                         <x-primary-button>Session Oluştur</x-primary-button>
                     </div>
