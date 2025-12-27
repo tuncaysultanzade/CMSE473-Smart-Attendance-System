@@ -6,21 +6,18 @@
     </x-slot>
 
     <div class="py-8 max-w-6xl mx-auto sm:px-6 lg:px-8">
-        {{-- Başarılı işlem mesajı --}}
         @if (session('success'))
             <div class="mb-4 p-3 bg-green-100 text-green-800 rounded">
                 {{ session('success') }}
             </div>
         @endif
 
-        {{-- Yeni Ders Ekle Butonu --}}
         <div class="flex justify-end mb-4">
             <x-primary-button onclick="window.location='{{ route('courses.create') }}'">
                 + Add new course
             </x-primary-button>
         </div>
 
-        {{-- Ders Tablosu --}}
         <div class="bg-white shadow overflow-hidden sm:rounded-lg p-6">
             <table class="w-full border-collapse">
                 <thead>
@@ -39,7 +36,6 @@
                             <td class="p-3">{{ $course->course_name }}</td>
                             <td class="p-3">{{ $course->department->department_name ?? '-' }}</td>
 
-                            {{-- Gruplar --}}
                             <td class="p-3">
                                 @forelse($course->groups as $group)
                                     <div class="text-sm text-gray-700">
@@ -51,14 +47,11 @@
                                 @endforelse
                             </td>
 
-                            {{-- İşlem Butonları --}}
                             <td class="p-3 text-right space-x-2">
-                                {{-- Düzenle --}}
                                 <x-secondary-button onclick="window.location='{{ route('courses.edit', $course) }}'">
                                     Edit
                                 </x-secondary-button>
 
-                                {{-- Sil --}}
                                 <form action="{{ route('courses.destroy', $course) }}"
                                       method="POST"
                                       onsubmit="return confirm('Are you sure?')"
