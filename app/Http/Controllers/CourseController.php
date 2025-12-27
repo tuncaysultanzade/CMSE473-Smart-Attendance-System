@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
-    // 📋 Liste
     public function index()
     {
         $courses = Course::with(['department', 'groups.academicTerm'])->get();
@@ -18,7 +17,6 @@ class CourseController extends Controller
         return view('courses.index', compact('courses'));
     }
 
-    // ➕ Oluşturma formu
     public function create()
     {
         $departments = Department::all();
@@ -27,7 +25,6 @@ class CourseController extends Controller
         return view('courses.create', compact('departments', 'terms'));
     }
 
-    // 💾 Yeni course kaydetme
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -45,7 +42,6 @@ class CourseController extends Controller
             'course_name' => $validated['course_name'],
         ]);
 
-        // Grupları ekle
         if (!empty($validated['groups'])) {
             foreach ($validated['groups'] as $groupData) {
                 $course->groups()->create([
@@ -57,8 +53,6 @@ class CourseController extends Controller
 
         return redirect()->route('courses.index')->with('success', 'Ders ve gruplar başarıyla oluşturuldu!');
     }
-
-    // ✏️ Düzenleme formu
     public function edit(Course $course)
     {
         $departments = Department::all();
@@ -69,7 +63,6 @@ class CourseController extends Controller
         return view('courses.edit', compact('course', 'departments', 'terms'));
     }
 
-    // 🔄 Güncelleme
     public function update(Request $request, Course $course)
     {
         $validated = $request->validate([
@@ -83,7 +76,6 @@ class CourseController extends Controller
         return redirect()->route('courses.edit', $course)->with('success', 'Ders başarıyla güncellendi!');
     }
 
-    // 🗑️ Silme
     public function destroy(Course $course)
     {
         $course->delete();
@@ -91,7 +83,6 @@ class CourseController extends Controller
         return redirect()->route('courses.index')->with('success', 'Ders silindi!');
     }
 
-    // ➕ Grup ekleme (edit sayfasından)
 public function addGroup(Request $request, Course $course)
 {
     $validated = $request->validate([
@@ -106,8 +97,6 @@ public function addGroup(Request $request, Course $course)
         return redirect()->route('courses.edit', $course)
                          ->with('success', 'Yeni grup eklendi!');
     } catch (\Exception $e) {
-        // Hata loglanabilir
-       // \Log::error('Grup ekleme hatası: ' . $e->getMessage());
 
         return redirect()->route('courses.edit', $course)
                          ->with('error', 'Bu grup numarası zaten var. Lütfen farklı numara ile tekrar deneyin.');
@@ -116,11 +105,9 @@ public function addGroup(Request $request, Course $course)
 
 public function editGroupMembers(CourseGroup $group)
 {
-    // Tüm öğrenciler ve öğretmenler
     $students = \App\Models\User::where('role', 'student')->get();
     $teachers = \App\Models\User::where('role', 'teacher')->get();
 
-    // Grup içindeki mevcut atamalar
     $assignedStudents = $group->assignedStudents->pluck('id')->toArray();
     $assignedTeachers = $group->assignedTeachers->pluck('id')->toArray();
 
@@ -150,7 +137,6 @@ public function updateGroupMembers(Request $request, CourseGroup $group)
 public function deleteGroup(Course $course, CourseGroup $group)
 {
     try {
-        // Grup silme işlemi
         $group->delete();
 
         return redirect()->route('courses.edit', $course)
