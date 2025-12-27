@@ -11,7 +11,6 @@ class CourseSessionController extends Controller
 {
     public function create()
     {
-        // Giriş yapan öğretmenin bağlı olduğu course group'ları pivot tablodan al
 $courseGroups = CourseGroup::whereHas('assignedTeachers', function ($q) {
     $q->where('course_group_assigned_teachers.user_id', Auth::id());
 })
@@ -33,7 +32,7 @@ $courseGroups = CourseGroup::whereHas('assignedTeachers', function ($q) {
 
         $session = CourseSession::create([
             ...$validated,
-            'self_attendance_type' => 1, // no restrict (örnek)
+            'self_attendance_type' => 1,
             'self_attendance_hash' => bin2hex(random_bytes(16)),
             'created_by' => Auth::id(),
         ]);
