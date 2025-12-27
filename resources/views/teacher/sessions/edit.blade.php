@@ -15,7 +15,6 @@
     <div class="py-8">
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
 
-            <!-- Success Message -->
             @if(session('success'))
                 <div class="mb-6 bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-6 py-4 rounded-xl shadow-lg flex items-center gap-3 max-w-md mx-auto">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -25,7 +24,6 @@
                 </div>
             @endif
 
-            <!-- Main Card -->
             <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
                 <div class="bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-6">
                     <h3 class="text-2xl font-bold text-white text-center">
@@ -47,7 +45,6 @@
 
                                 <div class="group bg-gray-50 hover:bg-white rounded-xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg transition-all duration-300">
                                     <div class="flex items-center justify-between">
-                                        <!-- Student Info -->
                                         <div class="flex items-center gap-4">
                                             <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md">
                                                 {{ strtoupper(substr($student->name, 0, 2)) }}
@@ -58,7 +55,6 @@
                                             </div>
                                         </div>
 
-                                        <!-- Status Buttons -->
                                         <div class="flex items-center gap-3">
                                             @foreach([
                                                 'present' => ['label' => 'Present', 'short' => 'P', 'color' => 'emerald'],
@@ -82,7 +78,6 @@
                                                         <span class="text-3xl">{{ $info['short'] }}</span>
                                                         <span class="text-xs font-medium">{{ $info['label'] }}</span>
                                                     </div>
-                                                    <!-- Pulse effect on checked -->
                                                     <div class="absolute inset-0 rounded-2xl peer-checked:animate-ping bg-{{ $info['color'] }}-400 opacity-75 -z-10"></div>
                                                 </label>
                                             @endforeach
@@ -92,7 +87,6 @@
                             @endforeach
                         </div>
 
-                        <!-- Submit Button -->
                         <div class="mt-10 text-center">
                             <button type="submit" class="inline-flex items-center gap-3 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold text-lg px-10 py-5 rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -105,7 +99,6 @@
                 </div>
             </div>
 
-            <!-- Footer Note -->
             <div class="text-center mt-8 text-gray-500 text-sm">
                 <p>QR-scanned attendance is auto-marked • Manual edits override QR records</p>
             </div>
