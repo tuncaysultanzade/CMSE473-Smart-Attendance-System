@@ -23,13 +23,9 @@ class AttendanceController extends Controller
             }])
             ->orderByDesc('session_date')
             ->get();
-
-        // AJAX isteği (fetch ile gelen)
         if ($request->ajax()) {
             return view('student.self_attendance.partials.table', compact('sessions'))->render();
         }
-
-        // Normal istek (sayfa yüklenmesi)
         return view('student.self_attendance.index', compact('sessions'));
     }
 
@@ -69,12 +65,10 @@ public function viewScanner($id)
 
         return view('teacher.sessions.qrcodescanner', compact('sessionIdQR'));
     }
-
-    /** API endpoint – called from the QR scanner page */
     public function markwithQr(Request $request)
     {
 
-        $user = Auth::user();               // <-- will be the logged-in teacher
+        $user = Auth::user();
     if (!$user) {
         return response()->json(['status'=>'error','message'=>'Unauthenticatedfff'], 401);
     }
@@ -82,8 +76,6 @@ public function viewScanner($id)
             'qr_token'   => 'required|string',
             'session_id' => 'required|integer|exists:course_sessions,id',
         ]);
-
-        // 1. Find the student by QR token
         $student = User::where('qr_token', $request->qr_token)
                        ->where('user_role', 'student')
                        ->first();
@@ -94,8 +86,6 @@ public function viewScanner($id)
                 'message' => 'Student not found or invalid QR token.',
             ], 404);
         }
-
-        // 2. Find the session (teacher must be the creator)
         $session = CourseSession::findOrFail($request->session_id);
 
         if ($session->created_by !== Auth::id()) {
@@ -104,8 +94,6 @@ public function viewScanner($id)
                 'message' => 'You are not authorized to mark attendance for this session.',
             ], 403);
         }
-
-        // 3. Prevent double marking
         $existing = Attendance::where('session_id', $session->id)
                               ->where('student_id', $student->id)
                               ->exists();
@@ -116,8 +104,6 @@ public function viewScanner($id)
                 'message' => 'Attendance already recorded for this student.',
             ], 409);
         }
-
-        // 4. Record attendance
         Attendance::create([
             'session_id'          => $session->id,
             'student_id'          => $student->id,
