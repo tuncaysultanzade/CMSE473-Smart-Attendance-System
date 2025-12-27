@@ -10,7 +10,6 @@
     
     <div class="py-12 bg-gray-800">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <!-- Success Message -->
             @if(session('success'))
                 <div class="mb-6 p-4 bg-green-100 dark:bg-green-900/30 border border-green-400 dark:border-green-700 text-green-700 dark:text-green-300 rounded-lg shadow-sm flex items-center">
                     <i class="fas fa-check-circle mr-2"></i> {{ session('success') }}
@@ -24,7 +23,6 @@
                         Quick Actions
                     </h3>
 
-                    <!-- Admin Dashboard -->
                     @if(auth()->user()->user_role === 'admin')
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                             <a href="{{ route('users.index') }}" class="group bg-gradient-to-br from-purple-600 to-purple-700 text-white rounded-xl p-6 shadow-lg hover:shadow-2xl hover:scale-105 transform transition-all duration-300">
@@ -58,7 +56,6 @@
                         </div>
                     @endif
 
-                    <!-- Teacher Dashboard -->
                     @if(auth()->user()->user_role === 'teacher')
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                             <!-- <a href="{{ route('groups.index') }}" class="group bg-gradient-to-br from-indigo-600 to-indigo-700 text-white rounded-xl p-6 shadow-lg hover:shadow-2xl hover:scale-105 transform transition-all duration-300">
