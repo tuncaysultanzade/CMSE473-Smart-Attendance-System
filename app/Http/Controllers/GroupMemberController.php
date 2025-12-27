@@ -8,20 +8,17 @@ use App\Models\User;
 
 class GroupMemberController extends Controller
 {
-    // 🔹 Tüm grupları listele
     public function index()
     {
         $groups = CourseGroup::withCount(['assignedStudents', 'assignedTeachers'])->get();
         return view('groups.index', compact('groups'));
     }
 
-    // 🔹 Grup üyelerini düzenleme
     public function edit(CourseGroup $group, Request $request)
     {
         $queryStudents = User::where('user_role', 'student')->where('is_active', true);
         $queryTeachers = User::where('user_role', 'teacher')->where('is_active', true);
 
-        // 🔹 Filtreleme
         if ($request->filled('search_student')) {
             $queryStudents->where(function ($q) use ($request) {
                 $q->where('name', 'like', "%{$request->search_student}%")
@@ -47,7 +44,6 @@ class GroupMemberController extends Controller
         return view('groups.edit', compact('group', 'students', 'teachers', 'assignedStudents', 'assignedTeachers'));
     }
 
-    // 🔹 Grup üyelerini güncelle
     public function update(Request $request, CourseGroup $group)
     {
         $request->validate([
