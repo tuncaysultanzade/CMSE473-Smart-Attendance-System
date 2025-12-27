@@ -6,7 +6,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>QR Attendance Scanner • ID {{ $sessionIdQR->id ?? 'Class Session' }}</title>
 
-    <!-- Tailwind + DaisyUI  TESTING YAPILMADI -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
@@ -24,7 +23,6 @@
 <div class="min-h-screen flex items-center justify-center p-4">
     <div class="w-full max-w-3xl">
         
-        <!-- Header -->
         <div class="text-center mb-8">
             <h1 class="text-4xl font-bold text-gray-800 mb-2">QR Attendance Scanner</h1>
             <p class="text-lg text-gray-600">Session ID: <span class="font-semibold text-indigo-600">{{ $sessionIdQR->id ?? 'Active Class' }}</span></p>
@@ -33,8 +31,6 @@
                 Scanner Active • Point camera at student QR code
             </div>
         </div>
-
-        <!-- Scanner + Status -->
         <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
             <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-6 text-white">
                 <h2 class="text-2xl font-bold text-center">Scan Student QR Code</h2>
@@ -42,15 +38,11 @@
 
             <div class="p-8">
                 <div id="qr-reader" class="qr-reader mx-auto"></div>
-
-                <!-- Status Alert -->
                 <div id="status" class="mt-6 text-center text-lg font-semibold text-white py-4 rounded-xl transition-all duration-500 opacity-0">
                     Ready to scan...
                 </div>
             </div>
         </div>
-
-        <!-- Scanned Students List -->
         <div class="mt-8 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
             <div class="bg-gradient-to-r from-emerald-500 to-teal-600 px-6 py-4">
                 <h3 class="text-xl font-bold text-white flex items-center justify-between">
@@ -70,8 +62,6 @@
                 No students scanned yet. Start scanning QR codes!
             </div>
         </div>
-
-        <!-- Footer -->
         <div class="text-center mt-8 text-gray-500 text-sm">
             <span class="font-semibold text-indigo-600">BETAv0.1</span> • {{ now()->format('D, M j, Y') }}
         </div>
