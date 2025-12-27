@@ -90,7 +90,7 @@
                         </div>
                     @endif
 
-                    <!-- Student Dashboard -->
+                    
                     @if(auth()->user()->user_role === 'student')
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl">
                             <a href="/student/self-attendance">
@@ -103,7 +103,7 @@
                                     <i class="fas fa-calendar-day text-4xl opacity-80"></i>
                                 </div>
                                 <div class="text-4xl font-bold">
-                                    @if($todayAttendance ?? false) <!-- change this logic-->
+                                    @if($todayAttendance ?? false)
                                         <span class="text-green-300">Present</span>
                                     @else
                                         <span class="text-yellow-300">Not Marked</span>
@@ -126,7 +126,7 @@
                         </div>
                     @endif
 
-                    <!-- Fallback if no role matches -->
+                   
                     @if(!in_array(auth()->user()->user_role, ['admin', 'teacher', 'student']))
                         <div class="text-center py-12">
                             <i class="fas fa-exclamation-triangle text-6xl text-yellow-500 mb-4"></i>
@@ -137,10 +137,8 @@
                 </div>
             </div>
 
-            <!-- Optional Stats Row (for Teacher & Admin) -->
             @if(in_array(auth()->user()->user_role, ['teacher', 'admin']))
                 <div class="mt-8 grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <!-- Stats Cards -->
                     @foreach([
                         ['icon' => 'chalkboard-teacher', 'label' => 'Total Classes', 'value' => '12', 'bgColor' => 'bg-indigo-100 dark:bg-indigo-900', 'textColor' => 'text-indigo-600 dark:text-indigo-400'],
                         ['icon' => 'users', 'label' => 'Total Students', 'value' => '248', 'bgColor' => 'bg-green-100 dark:bg-green-900', 'textColor' => 'text-green-600 dark:text-green-400'],
