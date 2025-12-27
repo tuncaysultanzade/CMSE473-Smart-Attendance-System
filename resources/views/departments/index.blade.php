@@ -7,7 +7,6 @@
 
     <div class="py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="bg-white shadow-md rounded-lg p-6">
-            <!-- Action Buttons -->
             <div class="mb-6 flex flex-wrap gap-4">
                 <a href="{{ route('dashboard') }}"
                    class="inline-flex items-center px-4 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition duration-200 ease-in-out">
@@ -25,7 +24,6 @@
                 </a>
             </div>
 
-            <!-- Table for Departments -->
             <div class="overflow-x-auto">
                 <table class="min-w-full table-auto border-collapse">
                     <thead>
@@ -41,7 +39,6 @@
                                 <td class="px-6 py-4 text-sm text-gray-700">{{ $department->department_code }}</td>
                                 <td class="px-6 py-4 text-sm text-gray-700">{{ $department->department_name }}</td>
                                 <td class="px-6 py-4 text-sm text-gray-700 flex space-x-4">
-                                    <!-- Edit Button route('departments.edit', $department) }} -->
                                     <a href=""
                                        class="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-600 font-medium rounded-lg hover:bg-blue-200 hover:text-blue-700 transition duration-150 ease-in-out">
                                         <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -49,7 +46,6 @@
                                         </svg>
                                         Edit
                                     </a>
-                                    <!-- Delete Button  route('departments.destroy', $department) }} -->
                                     <form action="{{ route('departments.destroy', $department) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
@@ -73,9 +69,7 @@
                 </table>
             </div>
 
-            <!-- Pagination Links -->
             <div class="mt-6">
-              <!--    $departments->links('pagination::tailwind') }}-->
             </div>
         </div>
     </div>
