@@ -16,7 +16,6 @@
         <form action="{{ route('groups.update', $group) }}" method="POST" class="space-y-6">
             @csrf
 
-            {{-- 🔹 Öğrenci Filtreleme --}}
             <div class="flex gap-2 items-center">
                 <input type="text" name="search_student" value="{{ request('search_student') }}"
                        placeholder="Search Student..."
@@ -24,7 +23,6 @@
                 <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded">Search</button>
             </div>
 
-            {{-- Öğrenciler --}}
             <div class="bg-white p-6 shadow rounded-lg">
                 <h3 class="text-lg font-semibold mb-4">Students</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -39,7 +37,6 @@
                 </div>
             </div>
 
-            {{-- 🔹 Öğretmen Filtreleme --}}
             <div class="flex gap-2 items-center">
                 <input type="text" name="search_teacher" value="{{ request('search_teacher') }}"
                        placeholder="Öğretmen ara..."
@@ -47,7 +44,6 @@
                 <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded">Search</button>
             </div>
 
-            {{-- Öğretmenler --}}
             <div class="bg-white p-6 shadow rounded-lg">
                 <h3 class="text-lg font-semibold mb-4">Teachers</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
