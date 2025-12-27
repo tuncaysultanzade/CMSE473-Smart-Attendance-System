@@ -18,7 +18,6 @@
                 <form action="{{ route('courses.store') }}" method="POST" class="space-y-6">
                     @csrf
 
-                    {{-- Bölüm --}}
                     <div>
                         <x-input-label for="department_id" :value="__('Department')" />
                         <select name="department_id" id="department_id" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm" required>
@@ -30,7 +29,6 @@
                         <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
                     </div>
 
-                    {{-- Ders Kodu --}}
                     <div>
                         <x-input-label for="course_code" :value="__('Course Code')" />
                         <x-text-input id="course_code" name="course_code" type="text" maxlength="10"
@@ -38,7 +36,6 @@
                         <x-input-error :messages="$errors->get('course_code')" class="mt-2" />
                     </div>
 
-                    {{-- Ders Adı --}}
                     <div>
                         <x-input-label for="course_name" :value="__('Course Name')" />
                         <x-text-input id="course_name" name="course_name" type="text"
@@ -48,7 +45,6 @@
 
                     <hr class="my-6 border-gray-300">
 
-                    {{-- Gruplar --}}
                     <div>
                         <h3 class="text-lg font-semibold mb-2">Groups</h3>
                         <div id="group-wrapper">
@@ -81,7 +77,6 @@
         </div>
     </div>
 
-    {{-- JavaScript: Dinamik grup ekleme --}}
     <script>
         let groupIndex = 1;
         document.getElementById('add-group').addEventListener('click', function() {
