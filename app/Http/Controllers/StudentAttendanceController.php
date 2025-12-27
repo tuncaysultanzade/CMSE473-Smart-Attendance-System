@@ -15,7 +15,7 @@ class StudentAttendanceController extends Controller
             $q->where('course_group_assigned_students.user_id', $userId);
         })
         ->with([
-            'courseGroup.course', // Ders bilgisini yükle
+            'courseGroup.course',
             'attendances' => function($q) use ($userId) {
                 $q->where('student_id', $userId);
             }
@@ -29,7 +29,6 @@ class StudentAttendanceController extends Controller
         foreach ($sessions as $session) {
             $courseName = $session->courseGroup?->course?->course_name ?? 'Ders Adı Bulunamadı';
 
-            // Ders özeti
             if (!isset($summary[$courseName])) {
                 $summary[$courseName] = ['total' => 0, 'attended' => 0];
                 $details[$courseName] = [];
@@ -39,7 +38,6 @@ class StudentAttendanceController extends Controller
                 $summary[$courseName]['attended']++;
             }
 
-            // Detaylar
             $details[$courseName][] = [
                 'id' => $session->id,
                 'date' => $session->session_date,
