@@ -39,7 +39,7 @@ class TeacherSessionController extends Controller
     public function edit($id)
     {
         $session = CourseSession::with([
-            'courseGroup.assignedStudents', // artık user() çağırmana gerek yok
+            'courseGroup.assignedStudents',
             'attendances'
         ])->findOrFail($id);
 
