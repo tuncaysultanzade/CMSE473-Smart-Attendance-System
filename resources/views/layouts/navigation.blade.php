@@ -2,7 +2,6 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex items-center">
-                <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" class="flex items-center space-x-3 group">
                         <x-application-logo class="block h-10 w-auto fill-current text-indigo-600 dark:text-indigo-400 group-hover:scale-105 transition-transform duration-200" />
@@ -10,16 +9,13 @@
                     </a>
                 </div>
 
-                <!-- Navigation Links - Role-Based & Matches Your Dashboard Exactly -->
                 <div class="hidden sm:flex sm:items-center sm:space-x-8 sm:ms-10">
 
-                    <!-- Always show Dashboard -->
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')"
                         class="text-sm font-medium text-gray-300 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
                         <i class="fas fa-tachometer-alt mr-2"></i> {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <!-- ADMIN ONLY -->
                     @if(auth()->user()->user_role === 'admin' || auth()->user()->role === 'admin')
                         <x-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')"
                             class="text-sm font-medium text-gray-300 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
@@ -47,7 +43,6 @@
                         </x-nav-link>
                     @endif
 
-                    <!-- TEACHER ONLY -->
                     @if(auth()->user()->user_role === 'teacher' || auth()->user()->role === 'teacher')
                         <x-nav-link href="{{ route('teacher.sessions') }}" :active="request()->routeIs('teacher.sessions')"
                             class="text-sm font-medium text-gray-300 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
@@ -55,7 +50,6 @@
                         </x-nav-link>
                     @endif
 
-                    <!-- STUDENT ONLY -->
                     @if(auth()->user()->user_role === 'student' || auth()->user()->role === 'student')
                         <x-nav-link href="{{ route('student.self_attendance') }}" :active="request()->routeIs('student.self_attendance')"
                             class="text-sm font-medium text-gray-300 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
@@ -75,15 +69,13 @@
                 </div>
             </div>
 
-            <!-- Right Side: User Menu -->
             <div class="hidden sm:flex sm:items-center sm:space-x-4">
-                <!-- Notification Bell -->
                 <button class="relative p-2 text-gray-500 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
                     <i class="fas fa-bell text-lg"></i>
                     <span class="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-gray-900"></span>
                 </button>
 
-                <!-- User Dropdown -->
+    
                 <x-dropdown align="right" width="64">
                     <x-slot name="trigger">
                         <button class="flex items-center space-x-3 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
@@ -131,7 +123,6 @@
                 </x-dropdown>
             </div>
 
-            <!-- Mobile Hamburger -->
             <div class="flex items-center sm:hidden">
                 <button @click="open = !open" class="p-2 rounded-lg text-gray-600 hover:text-indigo-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 transition">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -143,7 +134,6 @@
         </div>
     </div>
 
-    <!-- Mobile Menu -->
     <div :class="{'block': open, 'hidden': !open}" class="sm:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
@@ -205,5 +195,4 @@
     </div>
 </nav>
 
-<!-- Add Font Awesome once in your main layout -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
