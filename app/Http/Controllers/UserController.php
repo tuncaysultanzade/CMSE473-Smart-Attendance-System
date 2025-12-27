@@ -31,12 +31,8 @@ class UserController extends Controller
         $qr_token = null;
 
         if ($validated['user_role'] == 'student') {
-            $qr_token = Str::random(32);  // dynamic qr code
+            $qr_token = Str::random(32);
         }
-
-
-        
-
 
         User::create([
             'user_id' => $validated['user_id'],
@@ -56,7 +52,7 @@ class UserController extends Controller
 
     public function index()
 {
-    $users = User::paginate(10); // paginate for better UX
+    $users = User::paginate(10);
     return view('users.index', compact('users'));
 }
 
@@ -78,7 +74,6 @@ public function update(Request $request, User $user)
         'is_active' => 'required|boolean',
     ]);
 
-    // If password is filled, update it
     if ($request->filled('password')) {
         $validated['password'] = Hash::make($request->password);
     } else {
@@ -98,9 +93,7 @@ public function destroy(User $user)
 
     public function studentviewQR()
     {
-        $student = auth()->user(); // Giriş yapan öğrenci bilgileri
-
-        // Eğer öğrenciye ait QR token yoksa, yeni bir token oluşturabiliriz (isteğe bağlı)
+        $student = auth()->user(); 
         if (!$student->qr_token) {
 
             return redirect()->route('dashboard')->with('success', 'No qr code');
