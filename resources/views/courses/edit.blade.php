@@ -6,7 +6,6 @@
     </x-slot>
 
     <div class="py-8 max-w-5xl mx-auto sm:px-6 lg:px-8">
-        {{-- Başarı veya hata mesajları --}}
         @if (session('success'))
             <div class="mb-4 p-3 bg-green-100 text-green-800 rounded">
                 {{ session('success') }}
@@ -19,7 +18,6 @@
             </div>
         @endif
 
-        {{-- 🔹 Ders Bilgilerini Güncelle --}}
         <div class="bg-white p-6 shadow rounded-lg mb-8">
             <form action="{{ route('courses.update', $course) }}" method="POST" class="space-y-6">
                 @csrf
@@ -57,7 +55,6 @@
             </form>
         </div>
 
-        {{-- 🔹 Grup Ekleme Alanı --}}
         <div class="bg-white p-6 shadow rounded-lg mb-8">
             <h3 class="text-lg font-semibold mb-4">Add new group</h3>
 
@@ -66,13 +63,11 @@
     <form action="{{ route('courses.addGroup', $course) }}" method="POST" class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
         @csrf
 
-        {{-- Grup Numarası --}}
         <div class="flex flex-col">
             <x-input-label for="group_number" :value="__('Group No')" class="mb-1" />
             <x-text-input id="group_number" name="group_number" type="number" placeholder="1" class="block w-full" required />
         </div>
 
-        {{-- Dönem Seçimi --}}
         <div class="flex flex-col">
             <x-input-label for="academic_term_id" :value="__('Term')" class="mb-1" />
             <select id="academic_term_id" name="academic_term_id" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
@@ -83,7 +78,6 @@
             </select>
         </div>
 
-        {{-- Submit Butonu --}}
         <div class="flex justify-start md:justify-end">
             <x-primary-button class="w-full md:w-auto">Add group</x-primary-button>
         </div>
@@ -92,7 +86,6 @@
 
         </div>
 
-        {{-- 🔹 Mevcut Gruplar Listesi --}}
 <div class="bg-white p-6 shadow rounded-lg">
     <h4 class="text-md font-semibold mb-4">Active Groups</h4>
 
@@ -104,7 +97,6 @@
                     <span class="text-gray-500">— {{ $group->academicTerm->term ?? 'No term' }}</span>
                 </div>
                 <div class="flex gap-2">
-                    {{-- Düzenle butonu --}}
                     <a href="{{ route('groups.edit', $group) }}" class="px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700">Edit</a>
 
                     {{-- Sil butonu --}}
